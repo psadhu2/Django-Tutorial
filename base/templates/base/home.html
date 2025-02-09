@@ -4,10 +4,34 @@
 
 <h1>Home Template</h1>
 
+<style>
+    .home-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
 
-<div>
 
-    <a href="{% url 'create-room' %}">Create Room</a>
+<div class="home-container">
+
+    <div>
+        <h3>Browse Topics</h3>
+        <hr>
+
+        <div>
+            <a href="{% url 'home' %}">ALL</a>
+        </div>
+
+        {% for topic in topics %}
+        <div>
+            <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+        </div>
+        {% endfor%}
+    </div>
+
+    <div>
+        <h5>{{room_count}} rooms available</h5>
+        <a href="{% url 'create-room' %}">Create Room</a>
 
     <div>
         {% for room in rooms %}
@@ -22,6 +46,10 @@
 
         {% endfor %}
     </div>
+
+    </div>
+
+    
     
 </div>
 
